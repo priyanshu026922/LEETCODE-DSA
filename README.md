@@ -1,10 +1,9 @@
-:
-
-🚀 DSA Problem-Solving Journey
+💪 DSA Problem-Solving Journey
 
 This repository contains the list of Data Structures & Algorithms problems I have solved over time, primarily from LeetCode
 .
 The goal of maintaining this repo is to track progress, revise concepts, and build a strong problem-solving mindset.
+
 
 📌 About This Repo
 
