@@ -1,4 +1,4 @@
-💪 DSA Problem-Solving Journey
+##💪 DSA Problem-Solving Journey##
 
 This repository contains the list of Data Structures & Algorithms problems I have solved over time, primarily from LeetCode
 .
