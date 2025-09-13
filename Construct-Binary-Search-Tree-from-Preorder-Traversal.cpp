@@ -16,7 +16,8 @@ TreeNode* solve(vector<int>& p,int &i,int bound){
   if(i==p.size()||p[i]>bound){
     return NULL;
   }
-TreeNode*root=new TreeNode(p[i++]);
+TreeNode*root=new TreeNode(p[i]);
+i++;
 root->left=solve(p,i,root->val);
 root->right=solve(p,i,bound);
 return root;
