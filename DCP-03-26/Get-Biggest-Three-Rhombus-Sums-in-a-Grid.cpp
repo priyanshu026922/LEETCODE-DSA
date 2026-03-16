@@ -22,7 +22,7 @@
 22                
 23                
 24                //to correct..........................
-25                for(int k=1;k <= min({j, m-j-1, (n-i-1)/2});k++){
+25                for(int k=1;k <= min(j, m-j-1);k++){
 26                    //point-2
 27                    int sum=grid[i][j];
 28                    int new_i1=x+k;
