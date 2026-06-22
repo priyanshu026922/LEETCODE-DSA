@@ -1,27 +1,39 @@
-class Solution {
-public:
-int solve(int ind,vector<int>& nums,int tar,  vector<vector<int>>&dp){
-    
-    if(ind==0){
-        if(tar==0&&nums[0]==0)return 2;
-        if(tar==0||tar==nums[0])return 1;
-        return 0;
-    }
-    if(dp[ind][tar]!=-1)return dp[ind][tar];
-    int nt=solve(ind-1,nums,tar,dp);
-    int t=0;
-    if(nums[ind]<=tar){
-        t=solve(ind-1,nums,tar-nums[ind],dp);
-    }
-    return dp[ind][tar]=nt+t;
-}
-    int findTargetSumWays(vector<int>& nums, int target) {
-        int n=nums.size();
-        int x=accumulate(begin(nums),end(nums),0);
-        if(x-target<0||(x-target)%2!=0)return 0;
-        int req=(x-target)/2;
-        vector<vector<int>>dp(n,vector<int>(req+1,-1));
-        
-        return solve(n-1,nums,req,dp);
-    }
-};
+1class Solution {
+2private:
+3   int n;
+4   int dp[22][1011];
+5public:
+6    int solve(vector<int>& nums, int s,int i){
+7        if(i==n-1){
+8            if(nums[i]==0&&s==0){
+9               return 2;
+10            }else if(nums[i]==s||s==0){
+11                return 1;
+12            }
+13            return 0;
+14        }
+15        if(dp[i][s]!=-1)return dp[i][s];
+16        
+17        int nt=solve(nums,s,i+1);
+18
+19        int t=0;
+20        if(s>=nums[i]){
+21            t=solve(nums,s-nums[i],i+1);
+22        }
+23        return dp[i][s]=t+nt;
+24    }
+25    int findTargetSumWays(vector<int>& nums, int target) {
+26        n=nums.size();
+27
+28        int sum=accumulate(begin(nums),end(nums),0);
+29        int s=sum-target;
+30
+31        if(s<0||s%2!=0){
+32            return 0;
+33        }
+34        memset(dp,-1,sizeof(dp));
+35        s/=2;
+36
+37        return solve(nums,s,0);
+38    }
+39};
