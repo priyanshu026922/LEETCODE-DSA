@@ -1,48 +1,61 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-         unordered_map<char,int>mp;
+        int n=s.length();
+        int m=t.length();
+       
 
-         for(char it:t){
-           mp[it]++;
-         }
+        // for(int i=0;i<n;i++){
+        //     int cnt=0;
+     
+        
+        //     for(int j=i;j<n;j++){
+        //          
 
-         int m=s.length();
-         int n=t.length();
+        //           if(cnt==m){
+        //             if(j-i+1<len){
+        //                 start=i;
+        //                 len=j-i+1;
+        //             }
+        //           }
+        //     }
+        // }
 
-         int sInd=-1;
-         int mini=INT_MAX;
+        unordered_map<char,int>mp;
+        for(auto &it:t){
+            mp[it]++;
+        }
 
-         int i=0;
-         int j=0;
-         int cnt=0;
-         while(j<m){
-             if(mp[s[j]]>0){
+        int i=0;
+        int j=0;
+        int cnt=0;
+        int len=INT_MAX;
+        int start=-1;
+        while(j<n){
+            if(mp[s[j]]>0){
                 cnt++;
-             }
+            }
+            mp[s[j]]--;
 
-             mp[s[j]]--;
-
-
-             while(i<m&&cnt==n){
-                if(j-i+1<mini){
-                    mini=j-i+1;
-                    sInd=i;
+            while(cnt==m){
+                if(j-i+1<len){
+                    len=j-i+1;
+                    start=i;
                 }
-
 
                 mp[s[i]]++;
                 if(mp[s[i]]>0){
-                    cnt--;
+                  cnt--;
                 }
-                 i++;
-             }
+                i++;
+            }
+            j++;
+        }
 
-             j++;
-         }
+        if(start==-1){
+            return "";
+        }
 
-        if(sInd==-1)return "";
-
-         return s.substr(sInd,mini);
+        return s.substr(start,len);
     }
 };
